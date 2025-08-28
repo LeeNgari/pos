@@ -23,6 +23,7 @@ export const login = (dispatch: AppContextType['dispatch'], state: AppState) => 
         user,
         isAuthenticated: true,
         isLoading: false,
+        pinEntered: true,
       },
     });
     return user; // Return the user object on success

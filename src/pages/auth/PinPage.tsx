@@ -1,17 +1,20 @@
 import React, { useState } from "react";
-import { ArrowRight,Lock } from "lucide-react";
+import { ArrowRight, Lock } from "lucide-react";
 import { useApp } from "../../context/AppContext";
-import Logo from "../../assets/the-hub-group-high-resolution-logo-transparent.png"
+import Logo from "../../assets/the-hub-group-high-resolution-logo-transparent.png";
+import { useNavigate } from "react-router-dom";
 
 export function PinPage() {
   const { setPinEntered } = useApp();
   const [pin, setPin] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handlePinSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (pin === "1234") {
       setPinEntered(true);
+      navigate("/login");
     } else {
       setError("Invalid PIN. Please try again.");
       setPin("");

@@ -8,7 +8,11 @@ interface ProtectedRouteProps {
 
 export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ allowedRoles }) => {
   const { state } = useApp();
-  const { isAuthenticated, user } = state.auth;
+  const { isAuthenticated, user, pinEntered } = state.auth;
+
+  if (!pinEntered) {
+    return <Navigate to="/pin" replace />;
+  }
 
   if (!isAuthenticated) {
     // User is not authenticated, redirect to login page

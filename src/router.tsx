@@ -89,7 +89,11 @@ const router = createBrowserRouter([
 // Custom component to handle redirection from the root path
 function HomeRedirect() {
   const { state } = useApp();
-  const { isAuthenticated, user } = state.auth;
+  const { isAuthenticated, user, pinEntered } = state.auth;
+
+  if (!pinEntered) {
+    return <Navigate to="/pin" replace />;
+  }
 
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
